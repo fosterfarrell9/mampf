@@ -111,6 +111,7 @@ group :development, :docker_development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rubocop', '~> 0.54.0', require: false
   gem 'pgreset'
+  gem 'marcel'
 #  gem 'bullet'
 end
 
