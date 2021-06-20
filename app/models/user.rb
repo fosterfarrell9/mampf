@@ -53,6 +53,10 @@ class User < ApplicationRecord
   # and claiming the certificate
   has_many :quiz_certificates, dependent: :destroy
 
+  # a user has many given talks
+  has_many :speaker_talk_joins, foreign_key: 'speaker_id', dependent: :destroy
+  has_many :talks, through: :speaker_talk_joins
+
   # if a homepage is given it should at leat be a valid address
   validates :homepage, http_url: true, if: :homepage?
 

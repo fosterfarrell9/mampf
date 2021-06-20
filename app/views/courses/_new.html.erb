@@ -63,6 +63,16 @@
         <%= helpdesk(t('admin.course.info.term_independent'), false) %>
       </div>
     </div>
+    <div class="col-12 form-group">
+      <div class="custom-control custom-checkbox">
+        <%= f.check_box :seminar,
+                        class: 'custom-control-input' %>
+        <%= f.label :seminar,
+                    t('admin.course.seminar'),
+                    { class: 'custom-control-label' } %>
+        <%= helpdesk(t('admin.course.info.seminar'), false) %>
+      </div>
+    </div>
   </div>
   <div class="row">
     <div class="col-12 text-center">

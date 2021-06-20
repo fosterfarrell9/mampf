@@ -665,6 +665,7 @@ de:
       divisions: 'Teilbereiche'
       term_independent: 'semesterunabhängig'
       term_independence: 'Dieses Modul ist semesterunabhängig.'
+      seminar: 'Seminarmodul'
       image: 'Bild'
       no_image: >
         Es wurde noch kein Bild hochgeladen. Deshalb wird für die
@@ -733,6 +734,11 @@ de:
           MaMpf-Startseite. Das Seitenverhältnis sollte idealerweise 3:2
           betragen, das hochgeladene Bild wird dann von MaMpf herunterskaliert
           (auf maximal 405 Pixel Breite, 270 Pixel Höhe).
+        seminar: >
+          Ein Seminarmodul beherbergt innerhalb eines Studiengangs alle
+          Seminare oder alle Seminare eines gewissen Typs. Diese Einstellung
+          nur geändert werden, solange es in diesem Modul noch keine
+          Veranstaltungen gibt.
     chapter:
       edit: '%{chapter} bearbeiten'
       position: 'Positionierung nach %{chapter_name}'
@@ -814,7 +820,7 @@ de:
       content: >
         Dies ist der Inhalt, der aus veröffentlichten Medien, die mit dieser
         Sitzung verknüpft sind, extrahiert wurde. Dies verwendet Inhaltsverzeichnisse
-        von Videos, die mit dem ThymE-Editor bearbeitet wurden, Inhaltsbeschreibungen  
+        von Videos, die mit dem ThymE-Editor bearbeitet wurden, Inhaltsbeschreibungen
         von Medien und Skriptmetadaten (wenn die Vorlesung auf einem Skript aufbaut).
       destroyed: 'Sitzung gelöscht'
       tags_without_section: 'Tags ohne Abschnittsassozierung'
@@ -3437,6 +3443,10 @@ de:
           attributes:
             title:
               blank: 'Es muss ein Titel angegeben werden.'
+        seminar:
+          attributes:
+            course:
+              no_seminar: Das zugeordnete Modul ist kein Seminarmodul
         submission:
           lecture_not_matching: >
             Die zum Tutorium assoziierte Vorlesung sollte mit der zur

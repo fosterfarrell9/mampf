@@ -22,4 +22,9 @@ module CoursesHelper
                        edit_profile_path,
                        class: 'darkblue'))
   end
+
+  def course_type(course)
+    return t('basics.course') unless course.seminar
+    t('admin.course.seminar')
+  end
 end

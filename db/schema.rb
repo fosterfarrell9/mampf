@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_19_102604) do
+ActiveRecord::Schema.define(version: 2021_06_20_150602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -153,6 +153,7 @@ ActiveRecord::Schema.define(version: 2021_03_19_102604) do
     t.text "locale"
     t.boolean "term_independent", default: false
     t.text "image_data"
+    t.boolean "seminar", default: false
   end
 
   create_table "division_course_joins", force: :cascade do |t|
@@ -348,6 +349,7 @@ ActiveRecord::Schema.define(version: 2021_03_19_102604) do
     t.float "boost", default: 0.0
     t.datetime "released_at"
     t.text "publisher"
+    t.datetime "file_last_edited"
     t.index ["quizzable_type", "quizzable_id"], name: "index_media_on_quizzable_type_and_quizzable_id"
     t.index ["teachable_type", "teachable_id"], name: "index_media_on_teachable_type_and_teachable_id"
   end
@@ -462,6 +464,24 @@ ActiveRecord::Schema.define(version: 2021_03_19_102604) do
     t.index ["chapter_id"], name: "index_sections_on_chapter_id"
   end
 
+  create_table "seminars", force: :cascade do |t|
+    t.bigint "course_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "sort"
+    t.index ["course_id"], name: "index_seminars_on_course_id"
+    t.index ["sort"], name: "index_seminars_on_sort"
+  end
+
+  create_table "speaker_talk_joins", force: :cascade do |t|
+    t.bigint "talk_id", null: false
+    t.bigint "speaker_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["speaker_id"], name: "index_speaker_talk_joins_on_speaker_id"
+    t.index ["talk_id"], name: "index_speaker_talk_joins_on_talk_id"
+  end
+
   create_table "subject_translations", force: :cascade do |t|
     t.bigint "subject_id", null: false
     t.string "locale", null: false
@@ -497,6 +517,13 @@ ActiveRecord::Schema.define(version: 2021_03_19_102604) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "realizations"
+  end
+
+  create_table "talks", force: :cascade do |t|
+    t.bigint "seminar_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["seminar_id"], name: "index_talks_on_seminar_id"
   end
 
   create_table "terms", force: :cascade do |t|
@@ -862,8 +889,12 @@ ActiveRecord::Schema.define(version: 2021_03_19_102604) do
   add_foreign_key "quiz_certificates", "users"
   add_foreign_key "referrals", "items"
   add_foreign_key "referrals", "media"
+  add_foreign_key "seminars", "courses"
+  add_foreign_key "speaker_talk_joins", "talks"
+  add_foreign_key "speaker_talk_joins", "users", column: "speaker_id"
   add_foreign_key "submissions", "assignments"
   add_foreign_key "submissions", "tutorials"
+  add_foreign_key "talks", "seminars"
   add_foreign_key "thredded_messageboard_users", "thredded_messageboards", on_delete: :cascade
   add_foreign_key "thredded_messageboard_users", "thredded_user_details", on_delete: :cascade
   add_foreign_key "thredded_user_post_notifications", "thredded_posts", column: "post_id", on_delete: :cascade

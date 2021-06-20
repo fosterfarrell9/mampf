@@ -104,15 +104,25 @@
           <%= helpdesk(t('admin.course.info.term_independent'), false) %>
         <% end %>
       <% else %>
-        <%= t('admin.course.no_lectures') %>
-        <div class="custom-control custom-checkbox">
-          <%= f.check_box :term_independent,
-                          class: 'custom-control-input' %>
-          <%= f.label :term_independent,
-                      t('admin.course.term_independent'),
-                      { class: 'custom-control-label' } %>
-          <%= helpdesk(t('admin.course.info.term_independent'), false) %>
-        </div>
+        <% unless course.seminars.exists? %>
+          <%= t('admin.course.no_lectures') %>
+          <div class="custom-control custom-checkbox">
+            <%= f.check_box :term_independent,
+                            class: 'custom-control-input' %>
+            <%= f.label :term_independent,
+                        t('admin.course.term_independent'),
+                        { class: 'custom-control-label' } %>
+            <%= helpdesk(t('admin.course.info.term_independent'), false) %>
+          </div>
+          <div class="custom-control custom-checkbox">
+            <%= f.check_box :seminar,
+                            class: 'custom-control-input' %>
+            <%= f.label :seminar,
+                        t('admin.course.seminar'),
+                        { class: 'custom-control-label' } %>
+            <%= helpdesk(t('admin.course.info.seminar'), false) %>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>

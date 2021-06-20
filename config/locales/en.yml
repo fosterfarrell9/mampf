@@ -635,6 +635,7 @@ en:
       programs: 'Study Paths'
       term_independent: 'independent of terms'
       term_independence: 'This course is independent of terms.'
+      seminar: 'Seminar Course'
       image: 'Image'
       no_image: >
         No image has been uploaded yet. Therefore, the generic image will be
@@ -694,6 +695,10 @@ en:
           in the cards that appear in MaMpf's start page. The suggested
           aspect ratio is 3:2. The uploaded image will be downscaled by MaMpf
           (maximal width 405 pixels, maximal height 270 pixels).
+        seminar: >
+          A seminar course contains all seminars within a program (or all
+          seminars of a certain type). This setting can only be changed as long
+          as there is no event series associated to this course.
     chapter:
       edit: 'Edit %{chapter}'
       position: 'Position after %{chapter_name}'
@@ -811,7 +816,7 @@ en:
         content: >
           Here is the content extracted from media that is linked to this session.
           This is done by extracting table of contents from videos, that have been
-          edited by the ThymE-Editor, contents descriptions and metadata from 
+          edited by the ThymE-Editor, contents descriptions and metadata from
           scripts (for script-based lectures).
         list: >
           This is the list of all associated sessions.
@@ -3190,7 +3195,7 @@ en:
               present: >
                 Term was given, but associated course is independent of terms
             teacher:
-              required: 'You need to give a teacher.' 
+              required: 'You need to give a teacher.'
         lesson:
           attributes:
             date:
@@ -3254,6 +3259,10 @@ en:
           attributes:
             title:
               blank: 'You need to give a title.'
+        seminar:
+          attributes:
+            course:
+              no_seminar: The associated course is not a seminar course.
         submission:
           lecture_not_matching: >
             The tutorial should belong to the same lecture as the assignment.

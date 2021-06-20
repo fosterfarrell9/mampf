@@ -5,6 +5,7 @@ class Course < ApplicationRecord
   include ApplicationHelper
 
   has_many :lectures, dependent: :destroy
+  has_many :seminars, dependent: :destroy
 
   # tags are notions that treated in the course
   # e.g.: vector space, linear map are tags for the course 'Linear Algebra 1'
