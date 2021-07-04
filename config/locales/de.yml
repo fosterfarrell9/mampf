@@ -180,7 +180,8 @@ de:
       programs: 'Studiengänge'
       divisions: 'Teilbereiche'
     main:
-      my_lectures: 'Meine Veranstaltungen'
+      my_lectures: 'Meine Vorlesungen'
+      my_seminars: 'Meine Seminare'
       type: 'Typ'
       create_lecture: 'Veranstaltung anlegen'
       as_teacher: 'Als DozentIn'

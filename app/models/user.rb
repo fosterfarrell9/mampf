@@ -30,6 +30,9 @@ class User < ApplicationRecord
   # a user has many lectures as a teacher
   has_many :given_lectures, class_name: 'Lecture', foreign_key: 'teacher_id'
 
+  # a user has many seminars as a teacher
+  has_many :given_seminars, class_name: 'Seminar', foreign_key: 'teacher_id'
+
   # a user has many tutorials as a tutor
 
   has_many :tutor_tutorial_joins, foreign_key: 'tutor_id', dependent: :destroy

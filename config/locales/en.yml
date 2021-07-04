@@ -195,7 +195,8 @@ en:
       programs: 'Study Paths'
       divisions: 'Divisions'
     main:
-      my_lectures: 'My event series'
+      my_lectures: 'My lectures'
+      my_seminars: 'My seminars'
       type: 'type'
       create_lecture: 'Create an event series'
       as_teacher: 'As a teacher'

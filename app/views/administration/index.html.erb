@@ -2,7 +2,14 @@
   <div class="col-12 col-md-8">
     <div class="row">
       <div class="col-12 col-xxxl-8 mb-2">
-        <%= render partial: 'administration/index/my_lectures' %>
+        <div class="row">
+          <div class="col-12 mb-3">
+            <%= render partial: 'administration/index/my_lectures' %>
+          </div>
+          <div class="col-12">
+            <%= render partial: 'administration/index/my_seminars' %>
+          </div>
+        </div>
       </div>
       <div class="col-12 col-xxxl-4 mb-2">
         <%= render partial: 'administration/index/my_courses' %>

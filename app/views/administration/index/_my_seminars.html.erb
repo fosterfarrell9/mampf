@@ -1,0 +1,36 @@
+<div class="card card-fixed-smallplus">
+  <div class="card-header bg-primary text-white">
+    <div class="row">
+      <div class="col-8">
+        <%= t('admin.main.my_seminars') %>
+        <%= helpdesk(t('admin.main.info.lecture_definition'), true) %>
+      </div>
+      <div class="col-4 text-right">
+        <%= link_to '', new_lecture_path,
+                    class: 'fas fa-plus-circle text-light admin-index-button',
+                    id: 'new-seminar-button',
+                    data: { remote: true, toggle: 'tooltip' },
+                    title: t('admin.main.create_lecture') %>
+      </div>
+    </div>
+  </div>
+  <div class="card-body scrollable">
+    <div id="new-seminar-area"
+         class="bg-green-lighten-4 p-3 mb-3 rounded"
+         style="display: none;">
+    </div>
+    <% if current_user.given_seminars.any? %>
+      <div class="mb-2">
+        <%= t('admin.main.as_teacher') %>
+        (<%= current_user.given_lectures.size %>)
+        <%=  helpdesk(t('admin.main.info.given_lectures'), true) %>
+      </div>
+      <%= render partial: 'administration/index/seminars_card',
+                 locals: { seminars:
+                             current_user.given_seminars,
+                           teacher: false } %>
+    <% else %>
+      <%= t('admin.main.no_lectures_taught') %>
+    <% end %>
+  </div>
+</div>
