@@ -402,7 +402,7 @@ ActiveRecord::Schema.define(version: 2021_06_20_150602) do
     t.index ["subject_id"], name: "index_programs_on_subject_id"
   end
 
-  create_table "quiz_certificates", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "quiz_certificates", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.bigint "quiz_id", null: false
     t.bigint "user_id"
     t.text "code"
@@ -497,7 +497,7 @@ ActiveRecord::Schema.define(version: 2021_06_20_150602) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "submissions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "submissions", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.bigint "tutorial_id", null: false
     t.bigint "assignment_id", null: false
     t.text "token"
