@@ -704,16 +704,13 @@ en:
           in the cards that appear in MaMpf's start page. The suggested
           aspect ratio is 3:2. The uploaded image will be downscaled by MaMpf
           (maximal width 405 pixels, maximal height 270 pixels).
-<<<<<<< HEAD
         seminar: >
           A seminar course contains all seminars within a program (or all
           seminars of a certain type). This setting can only be changed as long
           as there is no event series associated to this course.
-=======
         action:
           If you are an editor of the corresponding module, a link for editing
           will be displayed here.
->>>>>>> remove_inspect_action
     chapter:
       edit: 'Edit %{chapter}'
       position: 'Position after %{chapter_name}'
