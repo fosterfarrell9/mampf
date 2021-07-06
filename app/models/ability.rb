@@ -28,7 +28,7 @@ class Ability
       can :manage, [:administration, :erdbeere, Item, Referral]
       cannot :classification, :administration
       # :create is a cancancan alias for new and create actions
-      can :create, [Chapter, Lecture, Lesson, Medium, Section]
+      can :create, [Chapter, Lecture, Lesson, Medium, Section, Seminar]
       # :update is a cancancan alias for update and edit actions
 
       can [:new, :create], Announcement

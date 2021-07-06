@@ -44,6 +44,12 @@ class Course < ApplicationRecord
   after_save :touch_media
   after_save :touch_lectures_and_lessons
 
+  scope :with_seminars,
+        -> { where(seminar: true) }
+
+  scope :with_lectures,
+        -> { where.not(seminar: true) }
+
   # include uploader to realize screenshot upload
   # this makes use of the shrine gem
   include ScreenshotUploader[:image]

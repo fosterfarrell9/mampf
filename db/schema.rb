@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_04_130135) do
+ActiveRecord::Schema.define(version: 2021_07_06_105455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -470,9 +470,13 @@ ActiveRecord::Schema.define(version: 2021_07_04_130135) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "sort"
     t.bigint "teacher_id", null: false
+    t.text "title"
+    t.bigint "term_id"
+    t.text "locale"
     t.index ["course_id"], name: "index_seminars_on_course_id"
     t.index ["sort"], name: "index_seminars_on_sort"
     t.index ["teacher_id"], name: "index_seminars_on_teacher_id"
+    t.index ["term_id"], name: "index_seminars_on_term_id"
   end
 
   create_table "speaker_talk_joins", force: :cascade do |t|
@@ -892,6 +896,7 @@ ActiveRecord::Schema.define(version: 2021_07_04_130135) do
   add_foreign_key "referrals", "items"
   add_foreign_key "referrals", "media"
   add_foreign_key "seminars", "courses"
+  add_foreign_key "seminars", "terms"
   add_foreign_key "seminars", "users", column: "teacher_id"
   add_foreign_key "speaker_talk_joins", "talks"
   add_foreign_key "speaker_talk_joins", "users", column: "speaker_id"

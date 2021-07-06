@@ -161,6 +161,14 @@ class User < ApplicationRecord
     administrated_courses.map { |c| [c.title, c.id] }
   end
 
+  def select_administrated_lecture_courses
+    administrated_courses.with_lectures.map { |c| [c.title, c.id] }
+  end
+
+  def select_administrated_seminar_courses
+    administrated_courses.with_seminars.map { |c| [c.title, c.id] }
+  end
+
   def administrated_courses
     admin ? Course.all : edited_courses
   end

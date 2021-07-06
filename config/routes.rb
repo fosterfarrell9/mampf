@@ -284,6 +284,8 @@ Rails.application.routes.draw do
                                 as: 'reassign_remark'
   resources :remarks, only: [:edit, :update]
 
+  resources :seminars, only: [:new, :create, :edit]
+
   resources :subjects, except: [:show]
 
   post 'submissions/join', to: 'submissions#join',

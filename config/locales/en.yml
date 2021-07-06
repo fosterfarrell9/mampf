@@ -199,6 +199,7 @@ en:
       my_seminars: 'My seminars'
       type: 'type'
       create_lecture: 'Create an event series'
+      create_seminar: 'Create a Seminar'
       as_teacher: 'As a teacher'
       as_editor: 'As an additional editor'
       as_course_editor: 'As a course editor'
@@ -1169,6 +1170,8 @@ en:
         answer_count: >
           If you are searching for (quiz) questions, you can select here how
           many anwers the equestions is supposed to have.
+    seminar:
+      new_seminar: 'New Seminar'
     tag:
       index: 'Search Tags'
       related_tags: 'Related Tags'
@@ -3136,6 +3139,8 @@ en:
     created_course_success: >
       The course %{course} (editors: %{editors}) has been successfully
       created.
+    created_seminar_success: >
+      The seminar %{seminar} has been successfully created.
   exception:
     title: Error
     exception: Exception on %{host}
@@ -3218,7 +3223,7 @@ en:
             term:
               required: 'You need to give a term.'
               present: >
-                Term was given, but associated course is independent of terms
+                Term was given, but associated course is independent of terms.
             teacher:
               required: 'You need to give a teacher.'
         lesson:
@@ -3288,6 +3293,17 @@ en:
           attributes:
             course:
               no_seminar: The associated course is not a seminar course.
+              already_present: >
+                For courses that are term independent there can be only one
+                seminar.
+            title:
+              taken:
+                An seminar with the same combination of title, course, term,
+                teacher and type already exists.
+            term:
+              required: You need to give a term.
+              present: >
+                Term was given, but associated course is independent of terms.
         submission:
           lecture_not_matching: >
             The tutorial should belong to the same lecture as the assignment.

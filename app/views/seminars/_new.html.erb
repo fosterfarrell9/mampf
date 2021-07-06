@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-12">
       <h6>
-        <%= t('admin.lecture.new_lecture') %>
+        <%= t('admin.seminar.new_seminar') %>
       </h6>
     </div>
   </div>
@@ -12,30 +12,30 @@
 <% elsif Term.count == 0 %>
   <%= t('admin.lecture.no_terms_yet') %>
 <% else %>
-  <%= form_with model: lecture do |f| %>
+  <%= form_with model: seminar do |f| %>
     <% term_independent = (from != 'course' && first_course_independent?) ||
-                            (from == 'course' && lecture.course.term_independent) %>
+                            (from == 'course' && seminar.course.term_independent) %>
     <div class="form-row">
       <div class="col-8 form-group">
         <%= f.label :course_id, t('basics.course') %>
         <%= helpdesk(t('admin.lecture.info.course'), false) %>
         <%= f.select :course_id,
                      options_for_select(current_user
-                                          .select_administrated_lecture_courses
+                                          .select_administrated_seminar_courses
                                           .natural_sort_by(&:first),
-                                        lecture.course&.id),
+                                        seminar.course&.id),
                      {},
                      { class: 'selectize',
                        disabled: from == 'course',
                        data: { terminfo: Course.pluck(:id, :term_independent) } } %>
         <% if from == 'course' %>
-          <%= f.hidden_field :course_id, value: lecture.course.id %>
+          <%= f.hidden_field :course_id, value: seminar.course.id %>
         <% end %>
         <div class="invalid-feedback"
-             id="new-lecture-course-error">
+             id="new-seminar-course-error">
         </div>
       </div>
-      <div class="col-4 form-group" id="newLectureTerm"
+      <div class="col-4 form-group" id="newSeminarTerm"
            style="<%= term_independent ? 'display: none;' : '' %>">
         <%= f.label :term_id,
                     t('basics.term') %>
@@ -46,7 +46,7 @@
                      { class: 'form-control',
                        disabled: term_independent } %>
         <div class="invalid-feedback"
-             id="new-lecture-term-error">
+             id="new-seminar-term-error">
         </div>
       </div>
       <div class="col-12 form-group">
@@ -60,13 +60,23 @@
                      { class: 'selectize',
                        data: { current: current_user.id } } %>
       </div>
-      <div class="col-12 form-group" id="newLectureSort"
+    <div class="col-12 form-group">
+      <%= f.label :title, t('basics.title') %>
+      <%= helpdesk(t('admin.course.info.title'), false) %>
+      <%= f.text_field :title, { class: 'form-control',
+                                 id: 'new_seminar_title',
+                                 required: true } %>
+      <div class="invalid-feedback"
+           id="new-seminar-title-error">
+      </div>
+    </div>
+      <div class="col-12 form-group" id="newSeminarSort"
            style="<%= term_independent ? 'display: none;' : '' %>">
         <%= f.label :sort,
                     t('basics.type') %>
         <%= f.select :sort,
-                     options_for_select(Lecture.sort_localized.invert.to_a,
-                                        'lecture'),
+                     options_for_select(Seminar.sort_localized.invert.to_a,
+                                        'seminar'),
                      {},
                      { class: 'form-control'} %>
       </div>
@@ -76,13 +86,12 @@
         <%= f.submit t('buttons.save'),
             class: 'btn btn-primary' %>
         <button type="button"
-                id="cancel-new-lecture"
+                id="cancel-new-seminar"
                 class="btn btn-secondary">
           <%= t('buttons.cancel') %>
         </button>
       </div>
     </div>
     <%= f.hidden_field :from, value: from %>
-    <%= f.hidden_field :content_mode, value: 'video' %>
   <% end %>
 <% end %>

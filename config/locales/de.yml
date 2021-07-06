@@ -184,6 +184,7 @@ de:
       my_seminars: 'Meine Seminare'
       type: 'Typ'
       create_lecture: 'Veranstaltung anlegen'
+      create_seminar: 'Seminar anlegen'
       as_teacher: 'Als DozentIn'
       as_editor: 'Als zusätzliche VeranstaltungseditorIn'
       as_course_editor: 'Als Moduleditor'
@@ -1246,6 +1247,8 @@ de:
         answer_count: >
           Falls Du nach Quizfragen suchst, kannst Du hier einstellen,
           wieviele Antworten die Quizfrage haben soll.
+    seminar:
+      new_seminar: Neues Seminar
     tag:
       index: 'Tagsuche'
       related_tags: 'Verknüpfte Tags'
@@ -3316,6 +3319,8 @@ de:
     created_course_success: >
       Das Modul %{course} (Editor(Innen): %{editors}) wurde erfolgreich
       angelegt.
+    created_seminar_success: >
+      Das Seminar %{seminar} wurde erfolgreich angelegt.
   exception:
     title: Fehler
     exception: Exception auf %{host}
@@ -3400,7 +3405,7 @@ de:
             term:
               required: 'Es muss ein Semester angegeben werden.'
               present: >
-                Semester angeben, assoziiertes Modul ist jedoch
+                Semester angegeben, assoziiertes Modul ist jedoch
                 semesterunabhängig
             teacher:
               required: 'Es muss ein(e) DozentIn angegeben werden.'
@@ -3474,7 +3479,18 @@ de:
         seminar:
           attributes:
             course:
-              no_seminar: Das zugeordnete Modul ist kein Seminarmodul
+              no_seminar: Das zugeordnete Modul ist kein Seminarmodul.
+              already_present: >
+                Für Module mit der Eigenschaft 'semesterunabhängig' kann es
+                höchstens ein Seminar geben.
+            title:
+              taken: Ein Seminar mit derselben Kombination aus Titel, Modul,
+                     Semester, DozentIn und Typ existiert bereits.
+            term:
+              required: 'Es muss ein Semester angegeben werden.'
+              present: >
+                Semester angegeben, assoziiertes Modul ist jedoch
+                semesterunabhängig
         submission:
           lecture_not_matching: >
             Die zum Tutorium assoziierte Vorlesung sollte mit der zur

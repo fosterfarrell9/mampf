@@ -1,10 +1,13 @@
 <div class="list-group mb-2">
   <div class="list-group-item list-group-item-secondary">
     <div class="row">
-      <div class="col-3">
-        <%= t('admin.main.term_type') %>
+      <div class="col-2">
+        <%= t('admin.main.term') %>
       </div>
-      <div class="col-6">
+      <div class="col-2">
+        <%= t('basics.type') %>
+      </div>
+      <div class="col-5">
         <%= t('admin.main.title') %>
       </div>
       <% if teacher %>
@@ -15,17 +18,17 @@
     </div>
   </div>
   <% seminars.each do |s| %>
-    <a href="#"
+    <a href="<%= edit_seminar_path(s) %>"
        class="list-group-item list-group-item-action">
       <div class="row">
         <div class="col-2">
-          <%= s.id %>
+          <%= s.term_to_label_short %>
         </div>
-        <div class="col-1">
-          <%= s.id %>
+        <div class="col-2">
+          <%= s.sort_localized_short_with_course %>
         </div>
-        <div class="col-6">
-          <%= s.id %>
+        <div class="col-5">
+          <%= s.title %>
         </div>
         <% if teacher %>
           <div class="col-3">

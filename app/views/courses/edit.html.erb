@@ -4,4 +4,8 @@
 </div>
 <%= render partial: 'media/modal' %>
 <%= render partial: 'tags/modal' %>
-<%= render partial: 'lectures/modal' %>
+<% if @course.seminar %>
+  <%= render partial: 'seminars/modal' %>
+<% else %>
+  <%= render partial: 'lectures/modal' %>
+<% end %>

@@ -77,15 +77,28 @@
     <div class="col-12">
       <%= t('basics.lectures') %>
       <%= helpdesk(t('admin.course.info.lectures'), false) %>
-      <% unless course.term_independent && course.lectures.any? %>
-        <%= link_to '',
-                    new_lecture_path(params: { from: 'course',
-                                               course: course.id }),
-                    class: 'fas fa-plus-circle text-dark',
-                    id: 'new-lecture-button',
-                    data: { remote: true,
-                            toggle: 'tooltip' },
-                    title: t('buttons.create_lecture') %>
+      <% if course.seminar %>
+        <% unless course.term_independent && course.seminars.any? %>
+          <%= link_to '',
+                      new_seminar_path(params: { from: 'course',
+                                                 course: course.id }),
+                      class: 'fas fa-plus-circle text-dark',
+                      id: 'new-seminar-button',
+                      data: { remote: true,
+                              toggle: 'tooltip' },
+                      title: t('buttons.create_seminar') %>
+        <% end %>
+      <% else %>
+        <% unless course.term_independent && course.lectures.any? %>
+          <%= link_to '',
+                      new_lecture_path(params: { from: 'course',
+                                                 course: course.id }),
+                      class: 'fas fa-plus-circle text-dark',
+                      id: 'new-lecture-button',
+                      data: { remote: true,
+                              toggle: 'tooltip' },
+                      title: t('buttons.create_lecture') %>
+        <% end %>
       <% end %>
     </div>
     <div class="col-12">
@@ -104,7 +117,15 @@
           <%= helpdesk(t('admin.course.info.term_independent'), false) %>
         <% end %>
       <% else %>
-        <% unless course.seminars.exists? %>
+        <% if course.seminars.exists? %>
+          <ul>
+            <% course.seminars.each do |s| %>
+              <li>
+                <%= s.term_title_teacher_info %>
+              </li>
+            <% end %>
+          </ul>
+        <% else %>
           <%= t('admin.course.no_lectures') %>
           <div class="custom-control custom-checkbox">
             <%= f.check_box :term_independent,
